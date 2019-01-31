@@ -12,12 +12,69 @@
 
 #include "fillit.h"
 
-int		get_sides_count(char *tet, char **tet_array)
+int		get_sides_count(char **tet_array)
 {
-	// tet is string of tetrimino
+	printf("+++get_sides_count+++\n");
+	// tet_array is splitted
+	int x;
+	int y;
+	int count_side;
+	int side_found;
+
+	x = 0;
+	y = 0;
+	count_side = 0;
 	// tet_array is empty pointer into which you should put ["...#", "...#", (etc..)]
+	while(tet_array[y])
+	{
+		x = 0;
+		while(tet_array[y][x] != '\0')
+		{
+			side_found = 0;
+			if (tet_array[y][x] == '#')
+			{
+				if (y != 0)
+				{
+					if (tet_array[y - 1][x] == '#'){
+						count_side++;
+						side_found++;
+					}
+				}
+				if (y != 3)
+				{
+					if (tet_array[y + 1][x]== '#')
+					{
+						count_side++;
+						side_found++;
+					}
+				}
+					if ((x + 1) != '\0')
+					{
+						if(tet_array[y][x+1]== '#')
+						{
+							count_side++;
+							side_found++;
+						}
+					}
+				if (x != 0)
+				{
+					if (tet_array[y][x-1]== '#'){
+						count_side++;
+						side_found++;
+					}
+				}
+				if (side_found == 0)
+				{
+					return (0);
+				}
+			}
+			x++;
+		}
+		y++;
+	}
+	printf("---get_side_count---\n");
 	// return the count
-	return (6);
+	return (count_side);
 }
 
 void	print_array(char **arr)
@@ -30,10 +87,12 @@ void	print_array(char **arr)
 		printf("%s\n", arr[i]);
 		i++;
 	}
+	printf("y:%d\n",i);
 }
 
 int		check_valid_tetrimino(char *tet, t_tet **tet_list)
 {
+	printf("+++check_valid_tetrimino+++\n");
 	int		i;
 	int		count;
 	char	**tet_array;
@@ -54,11 +113,16 @@ int		check_valid_tetrimino(char *tet, t_tet **tet_list)
 		}
 		i++;
 	}
-	count = get_sides_count(tet, tet_array); // --------------------------------------------Check validity of tets with get_sides_count
+	printf("format checked\n");
+	tet_array = ft_strsplit(tet,'\n');
+	print_array(tet_array);
+	printf("+++string splitted+++\n");
+	count = get_sides_count(tet_array); // --------------------------------------------Check validity of tets with get_sides_count
+	printf("!!!sides counted %d\n!!!",count);
 	if (count == 6 || count == 8) // -------------------------------------------------------If all checks pass, create list item for tet and add to tet_list
 	{
 		printf("Count: %d sides\n", count);
-		print_array(tet_array);
+		
 		// new_item = ft_tet_lstnew(tet_array);
 		// ft_tet_lstadd(tet_list, new_item);
 		return (1);
