@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zmagauin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 13:39:29 by marrodri          #+#    #+#             */
-/*   Updated: 2019/01/29 13:55:11 by marrodri         ###   ########.fr       */
+/*   Created: 2018/12/01 10:46:14 by zmagauin          #+#    #+#             */
+/*   Updated: 2018/12/02 02:55:34 by zmagauin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-#include <stdio.h>
-int main(int argc, char **argv)
-{
-	int		fd;
+#include "libft.h"
 
-	if (argc == 2)
+char	*ft_strcat(char *s1, const char *s2)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (s1[i])
+		i++;
+	j = 0;
+	while (s2[j])
 	{
-		fd = open(argv[1],O_RDONLY);
-		check_valid_file(fd);
+		s1[i + j] = s2[j];
+		j++;
 	}
-	else
-	{
-		ft_putstr("usage: fillit input_file\n");
-	}
-	return 0;
+	s1[i + j] = '\0';
+	return (s1);
 }

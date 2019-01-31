@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zmagauin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 13:39:29 by marrodri          #+#    #+#             */
-/*   Updated: 2019/01/29 13:55:11 by marrodri         ###   ########.fr       */
+/*   Created: 2018/11/30 14:12:25 by zmagauin          #+#    #+#             */
+/*   Updated: 2019/01/24 15:59:19 by zmagauin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-#include <stdio.h>
-int main(int argc, char **argv)
-{
-	int		fd;
+#include "libft.h"
+#include <stdlib.h>
 
-	if (argc == 2)
-	{
-		fd = open(argv[1],O_RDONLY);
-		check_valid_file(fd);
-	}
-	else
-	{
-		ft_putstr("usage: fillit input_file\n");
-	}
-	return 0;
+char	*ft_strndup(const char *s1, size_t n)
+{
+	char	*tmp;
+
+	if (!(tmp = ft_strnew(n)))
+		return (NULL);
+	ft_strncpy(tmp, s1, n);
+	return (tmp);
 }

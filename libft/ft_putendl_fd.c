@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zmagauin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 13:39:29 by marrodri          #+#    #+#             */
-/*   Updated: 2019/01/29 13:55:11 by marrodri         ###   ########.fr       */
+/*   Created: 2018/11/28 10:10:56 by zmagauin          #+#    #+#             */
+/*   Updated: 2018/11/28 10:15:45 by zmagauin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-#include <stdio.h>
-int main(int argc, char **argv)
-{
-	int		fd;
+#include <unistd.h>
 
-	if (argc == 2)
-	{
-		fd = open(argv[1],O_RDONLY);
-		check_valid_file(fd);
-	}
-	else
-	{
-		ft_putstr("usage: fillit input_file\n");
-	}
-	return 0;
+void	ft_putendl_fd(char const *s, int fd)
+{
+	int		l;
+
+	l = 0;
+	while (s[l])
+		l++;
+	write(fd, s, l);
+	write(fd, "\n", 1);
 }

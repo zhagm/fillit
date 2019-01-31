@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zmagauin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 13:39:29 by marrodri          #+#    #+#             */
-/*   Updated: 2019/01/29 13:55:11 by marrodri         ###   ########.fr       */
+/*   Created: 2018/12/06 07:13:39 by zmagauin          #+#    #+#             */
+/*   Updated: 2018/12/06 07:48:24 by zmagauin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-#include <stdio.h>
-int main(int argc, char **argv)
-{
-	int		fd;
+#include "libft.h"
+#include <stdlib.h>
 
-	if (argc == 2)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+{
+	t_list	*next;
+	t_list	**curr;
+
+	curr = alst;
+	while (*curr)
 	{
-		fd = open(argv[1],O_RDONLY);
-		check_valid_file(fd);
+		next = (*curr)->next;
+		ft_lstdelone(curr, del);
+		*curr = next;
 	}
-	else
-	{
-		ft_putstr("usage: fillit input_file\n");
-	}
-	return 0;
 }

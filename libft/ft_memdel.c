@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zmagauin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 13:39:29 by marrodri          #+#    #+#             */
-/*   Updated: 2019/01/29 13:55:11 by marrodri         ###   ########.fr       */
+/*   Created: 2018/11/30 13:40:02 by zmagauin          #+#    #+#             */
+/*   Updated: 2018/12/02 03:58:15 by zmagauin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-#include <stdio.h>
-int main(int argc, char **argv)
-{
-	int		fd;
+#include <stdlib.h>
 
-	if (argc == 2)
+void	ft_memdel(void **ap)
+{
+	if (ap != NULL && *ap != NULL)
 	{
-		fd = open(argv[1],O_RDONLY);
-		check_valid_file(fd);
+		free(*ap);
+		*ap = NULL;
 	}
-	else
-	{
-		ft_putstr("usage: fillit input_file\n");
-	}
-	return 0;
 }

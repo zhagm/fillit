@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_wordcount.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zmagauin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 13:39:29 by marrodri          #+#    #+#             */
-/*   Updated: 2019/01/29 13:55:11 by marrodri         ###   ########.fr       */
+/*   Created: 2018/12/05 10:23:44 by zmagauin          #+#    #+#             */
+/*   Updated: 2018/12/05 10:28:00 by zmagauin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-#include <stdio.h>
-int main(int argc, char **argv)
+int		ft_wordcount(char const *s, char delim)
 {
-	int		fd;
+	int		i;
+	int		count;
+	int		bool;
 
-	if (argc == 2)
+	i = 0;
+	count = 0;
+	bool = 0;
+	while (s[i])
 	{
-		fd = open(argv[1],O_RDONLY);
-		check_valid_file(fd);
+		if (s[i] == delim)
+			bool = 0;
+		else
+		{
+			if (bool == 0)
+			{
+				bool = 1;
+				count++;
+			}
+		}
+		i++;
 	}
-	else
-	{
-		ft_putstr("usage: fillit input_file\n");
-	}
-	return 0;
+	return (count);
 }

@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zmagauin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 13:39:29 by marrodri          #+#    #+#             */
-/*   Updated: 2019/01/29 13:55:11 by marrodri         ###   ########.fr       */
+/*   Created: 2018/11/28 10:09:06 by zmagauin          #+#    #+#             */
+/*   Updated: 2018/12/07 07:18:11 by zmagauin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-#include <stdio.h>
-int main(int argc, char **argv)
-{
-	int		fd;
+#include "libft.h"
+#include <unistd.h>
 
-	if (argc == 2)
-	{
-		fd = open(argv[1],O_RDONLY);
-		check_valid_file(fd);
-	}
-	else
-	{
-		ft_putstr("usage: fillit input_file\n");
-	}
-	return 0;
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
 }

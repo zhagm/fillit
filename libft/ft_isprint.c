@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zmagauin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 13:39:29 by marrodri          #+#    #+#             */
-/*   Updated: 2019/01/29 13:55:11 by marrodri         ###   ########.fr       */
+/*   Created: 2018/11/28 08:31:23 by zmagauin          #+#    #+#             */
+/*   Updated: 2018/12/02 02:55:18 by zmagauin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-#include <stdio.h>
-int main(int argc, char **argv)
-{
-	int		fd;
+#include "libft.h"
 
-	if (argc == 2)
-	{
-		fd = open(argv[1],O_RDONLY);
-		check_valid_file(fd);
-	}
+int		ft_isprint(int c)
+{
+	if (c >= 32 && c <= 126)
+		return (1);
 	else
-	{
-		ft_putstr("usage: fillit input_file\n");
-	}
-	return 0;
+		return (0);
 }

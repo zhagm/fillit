@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marrodri <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zmagauin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/29 13:39:29 by marrodri          #+#    #+#             */
-/*   Updated: 2019/01/29 13:55:11 by marrodri         ###   ########.fr       */
+/*   Created: 2018/11/28 21:09:55 by zmagauin          #+#    #+#             */
+/*   Updated: 2018/12/09 07:45:04 by zmagauin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
-#include <stdio.h>
-int main(int argc, char **argv)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	int		fd;
+	int i;
 
-	if (argc == 2)
+	i = 0;
+	while (s && f && s[i])
 	{
-		fd = open(argv[1],O_RDONLY);
-		check_valid_file(fd);
+		f(i, s + i);
+		i++;
 	}
-	else
-	{
-		ft_putstr("usage: fillit input_file\n");
-	}
-	return 0;
 }
