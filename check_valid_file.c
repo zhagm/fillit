@@ -11,114 +11,18 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-/*
-int		get_sides_count(char **tet_array)
+
+int		check_tet_format(char *tet)
 {
-	printf("+++get_sides_count+++\n");
-	// tet_array is splitted
-	int x;
-	int y;
-	int count_side;
-	int side_found;
-
-	x = 0;
-	y = 0;
-	count_side = 0;
-	// tet_array is empty pointer into which you should put ["...#", "...#", (etc..)]
-	while(tet_array[y])
-	{
-		x = 0;
-		while(tet_array[y][x] != '\0')
-		{
-			side_found = 0;
-			if (tet_array[y][x] == '#')
-			{
-				if (y != 0)
-				{
-					if (tet_array[y - 1][x] == '#'){
-						count_side++;
-						side_found++;
-					}
-				}
-				if (y != 3)
-				{
-					if (tet_array[y + 1][x]== '#')
-					{
-						count_side++;
-						side_found++;
-					}
-				}
-					if ((x + 1) != '\0')
-					{
-						if(tet_array[y][x+1]== '#')
-						{
-							count_side++;
-							side_found++;
-						}
-					}
-				if (x != 0)
-				{
-					if (tet_array[y][x-1]== '#'){
-						count_side++;
-						side_found++;
-					}
-				}
-				if (side_found == 0)
-				{
-					return (0);
-				}
-			}
-			x++;
-		}
-		y++;
-	}
-	printf("---get_side_count---\n");
-	// return the count
-	return (count_side);
-}
-*/
-
-void	print_array(char **arr)
-{
-	int i;
-
-	i = 0;
-	while (arr[i])
-	{
-		printf("%s\n", arr[i]);
-		i++;
-	}
-	printf("y:%d\n",i);
-}
-
-int		ft_charcount(char *str, char c)
-{
-	int i;
-	int count;
-
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			count++;
-		i++;
-	}
-	printf("hashes counted %d\n", count);
-	return (count);
-}
-
-int		check_valid_tetrimino(char *tet, t_tet **tet_list)
-{
-	printf("+++check_valid_tetrimino+++\n");
 	int		i;
-	int		count;
-	char	**tet_array;
-	t_tet	*new_item;
+	int 	hash_count;
 
-	i = 0;
-	while (tet[i])
+	i = -1;
+	hash_count = 0;
+	while (tet[++i] && hash_count <= 4)
 	{
+		if (tet[i] == '#')
+			hash_count++;
 		if ((i + 1) % 5 && i < 20)
 		{
 			if (tet[i] != '.' && tet[i] != '#')
@@ -129,29 +33,28 @@ int		check_valid_tetrimino(char *tet, t_tet **tet_list)
 			if (tet[i] != '\n')
 				return (0);
 		}
-		i++;
 	}
-	// printf("format checked\n");
-	tet_array = ft_strsplit(tet,'\n');
-	// print_array(tet_array);
-	// printf("+++string splitted+++\n");
-	if ((ft_charcount(tet, '#')) != 4)
-	{
-		printf("-----------------------ERROR: NOT 4 #'S!!!\n");
+	if (hash_count != 4)
 		return (0);
-	}
-	printf("-----passed hashes\n");
+	return (1);
+}
+
+int		check_valid_tetrimino(char *tet, t_tet **tet_list)
+{
+	int		count;
+	char	**tet_array;
+	t_tet	*new_item;
+
+	if (check_tet_format(tet) == 0)
+		return (0);
+	tet_array = ft_strsplit(tet, '\n');
 	count = get_sides_count(tet_array); // --------------------------------------------Check validity of tets with get_sides_count
-	// printf("!!!sides counted %d\n!!!",count);
 	if (count == 6 || count == 8) // -------------------------------------------------------If all checks pass, create list item for tet and add to tet_list
 	{
-		 printf("Count: %d sides\n", count);
-		
 		// new_item = ft_tet_lstnew(tet_array);
 		// ft_tet_lstadd(tet_list, new_item);
 		return (1);
 	}
-	printf("not six or eight sides\n");
 	return (0);
 }
 
@@ -161,7 +64,7 @@ int		check_valid_file(int fd)
 	int		is_valid;
 	int		ret;
 	char	buff[21 + 1];
-	t_tet  *tet_list;
+	t_tet	*tet_list;
 
 	while ((ret = read(fd, buff, 21)) && is_valid)
 	{
