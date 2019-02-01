@@ -31,6 +31,6 @@ typedef	struct	s_tet
 
 int     check_valid_file(int fd);
 int		check_valid_tetrimino(char *tet, t_tet **tet_list);
-
+int		get_sides_count(char **tet_array);
 
 #endif

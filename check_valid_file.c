@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-
+/*
 int		get_sides_count(char **tet_array)
 {
 	printf("+++get_sides_count+++\n");
@@ -76,6 +76,7 @@ int		get_sides_count(char **tet_array)
 	// return the count
 	return (count_side);
 }
+*/
 
 void	print_array(char **arr)
 {
@@ -103,6 +104,7 @@ int		ft_charcount(char *str, char c)
 			count++;
 		i++;
 	}
+	printf("hashes counted %d\n", count);
 	return (count);
 }
 
