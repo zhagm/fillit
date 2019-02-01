@@ -23,14 +23,13 @@
 
 typedef	struct	s_tet
 {
-	char			**tetrimino;
-	size_t			index;
-	size_t			*tet_size; // [3, 4]
-	struct s_tet	*next;
+	char		**tetrimino;
+	int			*size; // [3, 4]
+
 }				t_tet;
 
 int     check_valid_file(int fd);
-int		check_valid_tetrimino(char *tet, t_tet **tet_list);
+int		check_valid_tetrimino(char *tet, t_list **tet_list);
 int		get_sides_count(char **tet_array);
 
 #endif
