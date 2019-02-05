@@ -28,8 +28,23 @@ typedef	struct	s_tet
 
 }				t_tet;
 
-int     check_valid_file(int fd);
+
+// Delete before submission
+void	print_array(char **array);
+void	print_tet(t_tet *tet);
+
+int		check_valid_file(int fd);
 int		check_valid_tetrimino(char *tet, t_list **tet_list);
+int		check_tet_format(char *tet);
 int		get_sides_count(char **tet_array);
+
+char	**trim_tet_array(char **tet_array);
+char	**get_trim_array(char **arr, int *row_limits, int *col_limits);
+int		*get_row_limits(char **tet_array);
+int		*get_col_limits(char **tet_array);
+
+t_tet	*make_new_tet(char **tet_array);
+
+// RUN FOR EXECUTABLE: gcc main.c libft/libft.a fillit_*.c
 
 #endif
