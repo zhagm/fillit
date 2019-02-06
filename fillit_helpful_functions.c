@@ -12,8 +12,6 @@
 
 #include "fillit.h"
 
-// Functions found here are to help us in development, delete before submitting
-
 void	print_array(char **array)
 {
 	int i;
@@ -33,7 +31,7 @@ void	print_array(char **array)
 		printf("]\n");
 		i++;
 	}
-		printf("|_END OF TET\n");
+	printf("|_END OF TET\n");
 }
 
 void	print_tet(t_tet *tet)
@@ -41,4 +39,21 @@ void	print_tet(t_tet *tet)
 	printf("Tetrimino array: \n");
 	print_array(tet->tetrimino);
 	printf("size: [%d, %d]\n", tet->size[0], tet->size[1]);
+}
+
+void	loop_through_tet_list(t_list **tet_list)
+{
+	char	**tet_array;
+	t_tet	*tetrimino;
+	t_list	*curr;
+	int		i;
+
+	curr = *tet_list;
+	while (curr)
+	{
+		tetrimino = curr->content;
+		tet_array = tetrimino->tetrimino;
+		print_array(tet_array);
+		curr = curr->next;
+	}
 }

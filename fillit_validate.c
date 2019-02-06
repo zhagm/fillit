@@ -43,9 +43,7 @@ int		get_sides_count(char **tet_array)
 		while (tet_array[y][x] != '\0')
 		{
 			if (tet_array[y][x] == '#')
-			{
 				count_side = side_counter(count_side, tet_array, x, y);
-			}
 			x++;
 		}
 		y++;
@@ -86,8 +84,8 @@ int		check_valid_tetrimino(char *tet, t_list **tet_list)
 	char	**tet_array;
 	t_tet	*new_tet;
 	t_list	*new_item;
+	int		i;
 
-	printf("------------------------------------------------------");
 	if (check_tet_format(tet) == 0)
 		return (0);
 	tet_array = ft_strsplit(tet, '\n');
@@ -95,13 +93,15 @@ int		check_valid_tetrimino(char *tet, t_list **tet_list)
 	if (count == 6 || count == 8)
 	{
 		new_tet = make_new_tet(tet_array);
-		print_tet(new_tet);
-		new_item = ft_lstnew(new_tet, 0);
-		ft_lstadd(tet_list, new_item);
-		// ft_tet_lstadd(tet_list, new_item);
-		// free tet_array!!
+		new_item = ft_lstnew(new_tet, sizeof(void *));
+		if (*tet_list == NULL)
+			*tet_list = new_item;
+		else
+			ft_lstaddtoend(tet_list, new_item);
+		free(tet_array);
 		return (1);
 	}
+	free(tet_array);
 	return (0);
 }
 
@@ -115,19 +115,16 @@ int		check_valid_file(int fd)
 	while ((ret = read(fd, buff, 21)) && is_valid)
 	{
 		buff[ret] = '\0';
-		// printf("Ret: %d\n", ret);
 		if (ret == 21)
 		{
 			is_valid = check_valid_tetrimino(buff, &input_list);
-			// printf("IS_VALID: %d\n", is_valid);
 		}
 		else
 		{
-			// printf("is not valid\n");
 			return (1);
-			// free input_list (mem leak)
+			free(input_list);
 		}
-		// check for memory leaks!!!
 	}
+	loop_through_tet_list(&input_list);
 	return (0);
 }

@@ -32,6 +32,7 @@ typedef	struct	s_tet
 // Delete before submission
 void	print_array(char **array);
 void	print_tet(t_tet *tet);
+void	loop_through_tet_list(t_list **tet_list);
 
 int		check_valid_file(int fd);
 int		check_valid_tetrimino(char *tet, t_list **tet_list);

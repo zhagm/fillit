@@ -87,5 +87,6 @@ t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int				ft_lstsome(t_list *lst, int (*f)(t_list *elem));
 
 int				ft_wordcount(char const *s, char delim);
+void			ft_lstaddtoend(t_list **alst, t_list *new);
 
 #endif
