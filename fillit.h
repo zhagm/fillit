@@ -21,20 +21,34 @@
 // remove later
 # include <stdio.h>
 
+// typedef	struct	s_tet
+// {
+// 	char		**tetrimino;
+// 	int			*size;
+// }				t_tet;
+
 typedef	struct	s_tet
 {
 	char		**tetrimino;
-	int			*size; // [3, 4]
-
+	int			width;
+	int			height;
 }				t_tet;
 
+typedef	struct	s_position
+{
+	int		x;
+	int		y;
+
+}				t_position;
 
 // Delete before submission
 void	print_array(char **array);
 void	print_tet(t_tet *tet);
-void	loop_through_tet_list(t_list **tet_list);
+int		loop_through_tet_list(t_list **tet_list);
+int		ft_lstlen(t_list **list);
+char    **duplicate_board(char **board);
 
-int		check_valid_file(int fd);
+int		check_valid_file(int fd, t_list **input_list);
 int		check_valid_tetrimino(char *tet, t_list **tet_list);
 int		check_tet_format(char *tet);
 int		get_sides_count(char **tet_array);
@@ -46,6 +60,15 @@ int		*get_col_limits(char **tet_array);
 
 t_tet	*make_new_tet(char **tet_array);
 
+char    **make_board(int size);
+int     get_min_board_size(int count);
+char    **board_solver(t_list **tetriminos);
+
+int		check_tet_placement(char **board, t_tet *tet_object, int pos_y, int pos_x);
+int     backtrack(char **orig_board, t_list **tetriminos, char **modified_board);
+char	**place_tet(char **board, char **tet, int pos_y, int pos_x);
+
+int		recursive(t_list *curr, char **board);
 // RUN FOR EXECUTABLE: gcc main.c libft/libft.a fillit_*.c
 
 #endif

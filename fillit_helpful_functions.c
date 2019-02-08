@@ -23,7 +23,7 @@ void	print_array(char **array)
 	{
 		j = 0;
 		printf("|(%d)[", i);
-		while (array[i][j] && j < 4)
+		while (array[i][j])
 		{
 			printf(" %c ", array[i][j]);
 			j++;
@@ -38,22 +38,58 @@ void	print_tet(t_tet *tet)
 {
 	printf("Tetrimino array: \n");
 	print_array(tet->tetrimino);
-	printf("size: [%d, %d]\n", tet->size[0], tet->size[1]);
+	printf("height: %d, width: %d\n", tet->height, tet->width);
 }
 
-void	loop_through_tet_list(t_list **tet_list)
+int	loop_through_tet_list(t_list **tet_list)
 {
 	char	**tet_array;
-	t_tet	*tetrimino;
+	t_tet	*tet_object;
 	t_list	*curr;
 	int		i;
 
 	curr = *tet_list;
 	while (curr)
 	{
-		tetrimino = curr->content;
-		tet_array = tetrimino->tetrimino;
+		tet_object = curr->content;
+		tet_array = tet_object->tetrimino;
 		print_array(tet_array);
 		curr = curr->next;
+		i++;
 	}
+	return (i);
 }
+
+int		ft_lstlen(t_list **list)
+{
+	t_list	*curr;
+	int		i;
+
+	curr = *list;
+	i = 0;
+	while (curr)
+	{
+		curr = curr->next;
+		i++;
+	}
+	return (i);
+}
+
+char	**duplicate_board(char **board)
+{
+	char	**res;
+	int		l;
+	int		i;
+
+	while (board[l])
+		l++;
+	res = (char **)malloc((l + 1) * sizeof(char *));
+	while (i < l)
+	{
+		res[i] = ft_strdup(board[i]);
+		i++;
+	}
+	res[i] = NULL;
+	return (res);
+}
+

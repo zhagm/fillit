@@ -16,11 +16,30 @@
 int		main(int argc, char **argv)
 {
 	int		fd;
+	t_list	*input_list;
+	int		file_valid;
+	char	**board;
+	t_list	*curr;
+	t_tet	*tet_pointer_del;
 
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		check_valid_file(fd);
+		file_valid = check_valid_file(fd, &input_list);
+		curr = input_list;
+		printf("STARTING HERE");
+		while (curr)
+		{
+			printf("PRINTING TET RIGHT NOW\n");
+			tet_pointer_del = curr->content;
+			printf("tet_size: width: %d, height: %d\n", tet_pointer_del->width, tet_pointer_del->height);
+			print_tet(curr->content);
+			curr = curr->next;
+		}
+		if (file_valid)
+		{
+			board = board_solver(&input_list);
+		}
 	}
 	else
 	{

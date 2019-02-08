@@ -94,10 +94,14 @@ int		check_valid_tetrimino(char *tet, t_list **tet_list)
 	{
 		new_tet = make_new_tet(tet_array);
 		new_item = ft_lstnew(new_tet, sizeof(void *));
+		print_tet(new_tet);
 		if (*tet_list == NULL)
 			*tet_list = new_item;
 		else
 			ft_lstaddtoend(tet_list, new_item);
+		printf("~~~~~~~~~\n");
+		new_tet = (*tet_list)->content;
+		print_tet(new_tet);
 		free(tet_array);
 		return (1);
 	}
@@ -105,26 +109,25 @@ int		check_valid_tetrimino(char *tet, t_list **tet_list)
 	return (0);
 }
 
-int		check_valid_file(int fd)
+int		check_valid_file(int fd, t_list **input_list)
 {
 	int		is_valid;
 	int		ret;
 	char	buff[21 + 1];
-	t_list	*input_list;
+	int		count;
 
+	count = 0;
+	is_valid = 1;
 	while ((ret = read(fd, buff, 21)) && is_valid)
 	{
 		buff[ret] = '\0';
 		if (ret == 21)
 		{
-			is_valid = check_valid_tetrimino(buff, &input_list);
+			is_valid = check_valid_tetrimino(buff, input_list);
+			count++;
 		}
 		else
-		{
-			return (1);
-			free(input_list);
-		}
+			return (0);
 	}
-	loop_through_tet_list(&input_list);
-	return (0);
+	return (1);
 }

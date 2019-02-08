@@ -31,7 +31,7 @@ char	**get_trim_array(char **arr, int *row_limits, int *col_limits)
 			res[j++] = ft_strndup(arr[i] + col_limits[0], width);
 		i++;
 	}
-	res[j] = "\0";
+	res[j] = NULL;
 	return (res);
 }
 

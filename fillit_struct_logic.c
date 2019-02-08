@@ -15,27 +15,29 @@
 t_tet	*make_new_tet(char **tet_array)
 {
 	t_tet	*new;
+	char	**tet;
 	int		x;
 	int		y;
 
 	if ((new = (t_tet *)malloc(sizeof(t_tet))) == NULL)
 		return (NULL);
-	if ((new->size = (int *)malloc(2 * sizeof(int))) == NULL)
-		return (NULL);
 	if (tet_array)
 	{
-		new->tetrimino = trim_tet_array(tet_array);
+		tet = trim_tet_array(tet_array);
+		new->tetrimino = tet;
+		y = 0;
 		x = 0;
-		while (new->tetrimino[x])
-			x++;
-		while (new->tetrimino[0][y])
+		while (tet[y])
 			y++;
-		(new->size)[0] = x;
-		(new->size)[1] = y;
+		while (tet[0][x])
+			x++;
+		(new->height) = y;
+		(new->width) = x;
 	}
 	else
 	{
 		printf("ERROR IN MAKE_NEW_TET\n");
 	}
+	print_tet(new);
 	return (new);
 }
