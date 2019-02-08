@@ -93,15 +93,12 @@ int		check_valid_tetrimino(char *tet, t_list **tet_list)
 	if (count == 6 || count == 8)
 	{
 		new_tet = make_new_tet(tet_array);
-		new_item = ft_lstnew(new_tet, sizeof(void *));
-		print_tet(new_tet);
+		new_item = ft_lstnew_tet(new_tet, sizeof(void *));
 		if (*tet_list == NULL)
 			*tet_list = new_item;
 		else
 			ft_lstaddtoend(tet_list, new_item);
-		printf("~~~~~~~~~\n");
 		new_tet = (*tet_list)->content;
-		print_tet(new_tet);
 		free(tet_array);
 		return (1);
 	}
@@ -115,6 +112,7 @@ int		check_valid_file(int fd, t_list **input_list)
 	int		ret;
 	char	buff[21 + 1];
 	int		count;
+	t_list	*curr;
 
 	count = 0;
 	is_valid = 1;

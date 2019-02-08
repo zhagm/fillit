@@ -21,13 +21,14 @@ t_tet	*make_new_tet(char **tet_array)
 
 	if ((new = (t_tet *)malloc(sizeof(t_tet))) == NULL)
 		return (NULL);
+
 	if (tet_array)
 	{
 		tet = trim_tet_array(tet_array);
 		new->tetrimino = tet;
 		y = 0;
 		x = 0;
-		while (tet[y])
+		while (tet[y] && tet[y][0])
 			y++;
 		while (tet[0][x])
 			x++;
@@ -38,6 +39,5 @@ t_tet	*make_new_tet(char **tet_array)
 	{
 		printf("ERROR IN MAKE_NEW_TET\n");
 	}
-	print_tet(new);
 	return (new);
 }

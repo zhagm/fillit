@@ -21,24 +21,27 @@ int		main(int argc, char **argv)
 	char	**board;
 	t_list	*curr;
 	t_tet	*tet_pointer_del;
+	int		i;
 
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
 		file_valid = check_valid_file(fd, &input_list);
 		curr = input_list;
-		printf("STARTING HERE");
+		i = 0;
 		while (curr)
 		{
-			printf("PRINTING TET RIGHT NOW\n");
-			tet_pointer_del = curr->content;
-			printf("tet_size: width: %d, height: %d\n", tet_pointer_del->width, tet_pointer_del->height);
+			curr->content_size = i;
 			print_tet(curr->content);
 			curr = curr->next;
+			i++;
 		}
 		if (file_valid)
 		{
+			printf("000000000000000000000000000000000000>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
 			board = board_solver(&input_list);
+			printf("000000000000000000000000000000000000>>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
+			// tester_func(&input_list);
 		}
 	}
 	else

@@ -22,13 +22,12 @@ void	print_array(char **array)
 	while (array[i] && array[i][0])
 	{
 		j = 0;
-		printf("|(%d)[", i);
 		while (array[i][j])
 		{
-			printf(" %c ", array[i][j]);
+			printf("%c", array[i][j]);
 			j++;
 		}
-		printf("]\n");
+		printf("\n");
 		i++;
 	}
 	printf("|_END OF TET\n");
@@ -81,6 +80,8 @@ char	**duplicate_board(char **board)
 	int		l;
 	int		i;
 
+	l = 0;
+	i = 0;
 	while (board[l])
 		l++;
 	res = (char **)malloc((l + 1) * sizeof(char *));
@@ -93,3 +94,25 @@ char	**duplicate_board(char **board)
 	return (res);
 }
 
+
+t_list	*ft_lstnew_tet(t_tet *content, size_t content_size)
+{
+	t_list	*new;
+
+	if ((new = (t_list *)malloc(sizeof(t_list))) == NULL)
+		return (NULL);
+	if ((new->content = (t_tet *)malloc(sizeof(t_tet))) == NULL)
+		return (NULL);
+	if (content)
+	{
+		new->content = content;
+		new->content_size = 0;
+	}
+	else
+	{
+		new->content = NULL;
+		new->content_size = 0;
+	}
+	new->next = NULL;
+	return (new);
+}
