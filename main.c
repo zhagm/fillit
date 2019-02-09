@@ -25,7 +25,10 @@ int		main(int argc, char **argv)
 	{
 		fd = open(argv[1], O_RDONLY);
 		if (!(check_valid_file(fd, &input_list)))
+		{
+			ft_putstr("error\n");
 			return (0);
+		}
 		curr = input_list;
 		i = 0;
 		while (curr)
@@ -48,6 +51,8 @@ int		main(int argc, char **argv)
  * Todo before submission:
  * check for memory leaks (leaks on CL)
  * norm
+ * Makefile
+ * delete external files
  * check pdf for submission requirements
  * have executable in root
 */

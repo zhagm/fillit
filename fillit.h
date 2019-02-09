@@ -18,9 +18,6 @@
 # include <fcntl.h>
 # include "./libft/includes/libft.h"
 
-// remove later
-# include <stdio.h>
-
 typedef	struct	s_tet
 {
 	char		**tetrimino;
@@ -66,6 +63,5 @@ char	 **place_tet(char **board, char **tet, int pos_y, int pos_x, int index);
 int		recursive(t_list *curr, char **board, char ***result);
 
 void	tester_func(t_list **tets);
-// RUN FOR EXECUTABLE: gcc main.c libft/libft.a fillit_*.c
 
 #endif

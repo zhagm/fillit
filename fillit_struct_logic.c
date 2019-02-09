@@ -37,7 +37,7 @@ t_tet	*make_new_tet(char **tet_array)
 	}
 	else
 	{
-		printf("ERROR IN MAKE_NEW_TET\n");
+		ft_putstr("ERROR IN MAKE_NEW_TET\n");
 	}
 	return (new);
 }

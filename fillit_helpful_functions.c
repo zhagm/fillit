@@ -23,20 +23,20 @@ void	print_array(char **array)
 		j = 0;
 		while (array[i][j])
 		{
-			printf("%c", array[i][j]);
+			ft_putchar(array[i][j]);
 			j++;
 		}
-		printf("\n");
+		ft_putchar('\n');
 		i++;
 	}
 }
 
-void	print_tet(t_tet *tet)
-{
-	printf("Tetrimino array: \n");
-	print_array(tet->tetrimino);
-	printf("height: %d, width: %d\n", tet->height, tet->width);
-}
+// void	print_tet(t_tet *tet)
+// {
+// 	ft_putstr("Tetrimino array: \n");
+// 	print_array(tet->tetrimino);
+// 	printf("height: %d, width: %d\n", tet->height, tet->width);
+// }
 
 int	loop_through_tet_list(t_list **tet_list)
 {

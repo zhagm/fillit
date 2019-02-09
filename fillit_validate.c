@@ -111,25 +111,31 @@ int		check_valid_file(int fd, t_list **input_list)
 	int		ret;
 	char	buff[21 + 1];
 	int		count;
+	int		last_ret;
 
 	count = 0;
 	is_valid = 1;
 	while ((ret = read(fd, buff, 21)) && is_valid)
 	{
 		buff[ret] = '\0';
-		printf("BUFF IS \n%s\n", buff);
 		if (ret == 20)
 		{
 			buff[20] = '\n';
 			buff[21] = '\0';
 		}
-		if (ret == 21 || ret == 20)
+		if (ret == 21 || (ret == 20))
 		{
 			is_valid = check_valid_tetrimino(buff, input_list);
 			count++;
 		}
 		else
 			return (0);
+		if (!is_valid)
+			return (0);
+		if (ret != 0)
+			last_ret = ret;
 	}
+	if (last_ret != 20)
+		return (0);
 	return (1);
 }
