@@ -3,26 +3,33 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marrodri <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: zmagauin <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/01/28 19:01:13 by marrodri          #+#    #+#              #
-#    Updated: 2019/01/28 19:14:38 by marrodri         ###   ########.fr        #
+#    Created: 2016/09/21 14:58:27 by zmagauin          #+#    #+#              #
+#    Updated: 2016/09/25 19:32:38 by zmagauin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fillit
+NAME		= fillit
+# CFLAGS	= -Wall -Werror -Wextra -Iincludes -c
+CFLAGS	= -Wall -Werror -Wextra main.c libft/libft.a 
+FILES		= $(shell ls | grep -E "fillit_.+\.c")
+# OBJ			= $(FILES:%.c=%.o)
 
-RM = rm -f
+all: $(NAME)
 
-SRC = 
+$(NAME): 
+	@gcc $(CFLAGS) -o $(NAME) $(FILES)
+# 	@ar rcs $(NAME) $(OBJ)
 
-HDR = 
+# $(OBJ): $(FILES)
 
-CFLAGS = -Wall -Wextra -Werror
+clean:
+	@rm -f $(OBJ)
 
-OBJ = $(SRC:.c=.o)
+fclean: clean
+	@rm -f $(NAME)
 
-$(NAME):
-	gcc $(CFLAGS) -c $(SRC)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+re: fclean all
+
+.PHONY: clean fclean all re

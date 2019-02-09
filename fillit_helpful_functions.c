@@ -18,7 +18,6 @@ void	print_array(char **array)
 	int j;
 
 	i = 0;
-	printf("|-START\n");
 	while (array[i] && array[i][0])
 	{
 		j = 0;
@@ -30,7 +29,6 @@ void	print_array(char **array)
 		printf("\n");
 		i++;
 	}
-	printf("|_END OF TET\n");
 }
 
 void	print_tet(t_tet *tet)
@@ -48,6 +46,7 @@ int	loop_through_tet_list(t_list **tet_list)
 	int		i;
 
 	curr = *tet_list;
+	i = 0;
 	while (curr)
 	{
 		tet_object = curr->content;
@@ -95,7 +94,7 @@ char	**duplicate_board(char **board)
 }
 
 
-t_list	*ft_lstnew_tet(t_tet *content, size_t content_size)
+t_list	*ft_lstnew_tet(t_tet *content)
 {
 	t_list	*new;
 

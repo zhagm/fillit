@@ -56,25 +56,8 @@ char	**board_solver(t_list **tetriminos)
 	while (!solved)
 	{
 		board = make_board(board_size++);
-		solved = backtrack(board, tetriminos, solved_board);
+		solved = recursive(*tetriminos, board, &solved_board);
 		// add error check to avoid infinite loop
 	}
-	if (solved)
-		return (solved_board);
-    // return 1 if all good, 0 if error
-    // return (solved_board);
-	return (board);
+	return (solved_board);
 }
-/*
-**char	**
-	// make board
-	// backtrack
-	// returns modified_board to fillit
-	loop_through_tet_list(&input_list);
-	make_board(get_min_board_size(count));
-
-	board = make_board(ft_lstlen(&input_list));
-	printf("EMPTY BOARD:\n");
-	print_array(board);
-*/
-

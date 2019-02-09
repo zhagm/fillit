@@ -40,7 +40,7 @@ void	print_array(char **array);
 void	print_tet(t_tet *tet);
 int		loop_through_tet_list(t_list **tet_list);
 int		ft_lstlen(t_list **list);
-t_list	*ft_lstnew_tet(t_tet *content, size_t content_size);
+t_list	*ft_lstnew_tet(t_tet *content);
 char    **duplicate_board(char **board);
 
 int		check_valid_file(int fd, t_list **input_list);
@@ -60,7 +60,7 @@ int     get_min_board_size(int count);
 char    **board_solver(t_list **tetriminos);
 
 int		check_tet_placement(char **board, t_tet *tet_object, int pos_y, int pos_x);
-int     backtrack(char **orig_board, t_list **tetriminos, char **modified_board);
+int		backtrack(char **orig_board, t_list **tetriminos, char **modified_board);
 char	 **place_tet(char **board, char **tet, int pos_y, int pos_x, int index);
 
 int		recursive(t_list *curr, char **board, char ***result);
