@@ -12,6 +12,28 @@
 
 #include "fillit.h"
 
+t_list	*ft_lstnew_tet(t_tet *content)
+{
+	t_list	*new;
+
+	if ((new = (t_list *)malloc(sizeof(t_list))) == NULL)
+		return (NULL);
+	if ((new->content = (t_tet *)malloc(sizeof(t_tet))) == NULL)
+		return (NULL);
+	if (content)
+	{
+		new->content = content;
+		new->content_size = 0;
+	}
+	else
+	{
+		new->content = NULL;
+		new->content_size = 0;
+	}
+	new->next = NULL;
+	return (new);
+}
+
 t_tet	*make_new_tet(char **tet_array)
 {
 	t_tet	*new;
@@ -21,7 +43,6 @@ t_tet	*make_new_tet(char **tet_array)
 
 	if ((new = (t_tet *)malloc(sizeof(t_tet))) == NULL)
 		return (NULL);
-
 	if (tet_array)
 	{
 		tet = trim_tet_array(tet_array);

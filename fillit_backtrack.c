@@ -51,7 +51,7 @@ char	**place_tet(char **board, char **tet, int pos_y, int pos_x, int index)
 	y = 0;
 	x = 0;
 	board_size = ft_strlen(board[0]);
-	modified_board = duplicate_board(board);
+	modified_board = ft_dupstrarr(board);
 	while (tet[y])
 	{
 		x = 0;
@@ -77,7 +77,7 @@ int		recursive(t_list *curr, char **board, char ***result)
 
 	if (curr == NULL)
 	{
-		*result = duplicate_board(board);
+		*result = ft_dupstrarr(board);
 		free(board);
 		return (1);
 	}

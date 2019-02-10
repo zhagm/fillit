@@ -12,29 +12,6 @@
 
 #include "fillit.h"
 
-char	**get_trim_array(char **arr, int *row_limits, int *col_limits)
-{
-	int		width;
-	int		height;
-	char	**res;
-	int		i;
-	int		j;
-
-	width = ((col_limits[1] - col_limits[0]) + 1);
-	height = ((row_limits[1] - row_limits[0]) + 1);
-	res = malloc((height + 1) * sizeof(char *));
-	i = 0;
-	j = 0;
-	while (i < 4)
-	{
-		if (i >= row_limits[0] && i <= row_limits[1])
-			res[j++] = ft_strndup(arr[i] + col_limits[0], width);
-		i++;
-	}
-	res[j] = NULL;
-	return (res);
-}
-
 int		*get_row_limits(char **tet_array)
 {
 	int i;
@@ -89,13 +66,26 @@ int		*get_col_limits(char **tet_array)
 	return (res);
 }
 
-char	**trim_tet_array(char **tet_array)
+char	**trim_tet_array(char **arr)
 {
-	int *row_limits;
-	int *col_limits;
+	char	**res;
+	int		i;
+	int		j;
+	int		*r_lims;
+	int		*c_lims;
 
-	row_limits = get_row_limits(tet_array);
-	col_limits = get_col_limits(tet_array);
-	return (get_trim_array(tet_array, row_limits, col_limits));
-	return (tet_array);
+	r_lims = get_row_limits(arr);
+	c_lims = get_col_limits(arr);
+	res = malloc((((r_lims[1] - r_lims[0]) + 1) + 1) * sizeof(char *));
+	i = 0;
+	j = 0;
+	while (i < 4)
+	{
+		if (i >= r_lims[0] && i <= r_lims[1])
+			res[j++] =
+			ft_strndup(arr[i] + c_lims[0], ((c_lims[1] - c_lims[0]) + 1));
+		i++;
+	}
+	res[j] = NULL;
+	return (res);
 }

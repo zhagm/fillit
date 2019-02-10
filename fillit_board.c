@@ -57,7 +57,6 @@ char	**board_solver(t_list **tetriminos)
 	{
 		board = make_board(board_size++);
 		solved = recursive(*tetriminos, board, &solved_board);
-		// add error check to avoid infinite loop
 	}
 	return (solved_board);
 }

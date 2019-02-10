@@ -18,8 +18,6 @@ int		main(int argc, char **argv)
 	int		fd;
 	t_list	*input_list;
 	char	**board;
-	t_list	*curr;
-	int		i;
 
 	if (argc == 2)
 	{
@@ -29,16 +27,8 @@ int		main(int argc, char **argv)
 			ft_putstr("error\n");
 			return (0);
 		}
-		curr = input_list;
-		i = 0;
-		while (curr)
-		{
-			curr->content_size = i;
-			curr = curr->next;
-			i++;
-		}
 		board = board_solver(&input_list);
-		print_array(board);
+		ft_printarray(board);
 	}
 	else
 	{
@@ -55,4 +45,5 @@ int		main(int argc, char **argv)
  * delete external files
  * check pdf for submission requirements
  * have executable in root
+// potential error in check_valid_file: if one tetrimino ret is 20 and next is 21, edge case where we'd be f-ed
 */

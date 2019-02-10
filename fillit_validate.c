@@ -93,6 +93,7 @@ int		check_valid_tetrimino(char *tet, t_list **tet_list)
 	{
 		new_tet = make_new_tet(tet_array);
 		new_item = ft_lstnew_tet(new_tet);
+		new_item->content_size = ft_lstlen(tet_list);
 		if (*tet_list == NULL)
 			*tet_list = new_item;
 		else
@@ -124,18 +125,11 @@ int		check_valid_file(int fd, t_list **input_list)
 			buff[21] = '\0';
 		}
 		if (ret == 21 || (ret == 20))
-		{
 			is_valid = check_valid_tetrimino(buff, input_list);
-			count++;
-		}
-		else
-			return (0);
-		if (!is_valid)
+		if (!is_valid || (ret != 21 && ret != 20))
 			return (0);
 		if (ret != 0)
 			last_ret = ret;
 	}
-	if (last_ret != 20)
-		return (0);
-	return (1);
+	return (last_ret != 20 ? 0 : 1);
 }
