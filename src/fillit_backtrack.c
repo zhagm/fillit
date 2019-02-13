@@ -42,15 +42,18 @@ int		check_tet_placement(char **board, t_tet *curr, int pos_y, int pos_x)
 }
 
 
-int		place_tet(char **board, char **tet, int pos_y, int pos_x, int index)
+int		place_tet(char **board, char **tet, int *pos, int index)
 {
 	int		y;
 	int		x;
+	int		pos_y;
+	int		pos_x;
 	int		board_size;
 
 	y = 0;
 	x = 0;
-	// printf("pos_y: %d, pos[0]: %d. pos_x: %d, pos[1]: %d\n", pos_x, pos[0], pos_y, pos[1]);
+	pos_y = pos[0];
+	pos_x = pos[1];
 	board_size = ft_strlen(board[0]);
 	while (tet[y])
 	{
@@ -68,6 +71,7 @@ int		place_tet(char **board, char **tet, int pos_y, int pos_x, int index)
 		}
 		y++;
 	}
+	free(pos);
 	return (1);
 }
 
@@ -97,12 +101,12 @@ int		recursive(t_list *curr, char **board, int board_size)
 		{
 			if ((check_tet_placement(board, tet, y, x)) == 1)
 			{
-				place_tet(board, tet->tetrimino, y, x, curr->content_size);
+				place_tet(board, tet->tetrimino, send_pos(y, x), curr->content_size);
 				if (recursive(curr->next, board, board_size) == 1)
 					return (1);
 				else
 				{
-					place_tet(board, tet->tetrimino, y, x, -1);
+					place_tet(board, tet->tetrimino, send_pos(y, x), -1);
 					// ft_printarray(board);
 				}
 			}

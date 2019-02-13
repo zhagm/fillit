@@ -12,47 +12,48 @@
 
 #include "fillit.h"
 
-void    free_board(char **board) // frees char**
+void	free_board(char **board) // frees char**
 {
-    int i;
+	int i;
 
-    i = 0;
-    if (board)
-    {
-        while (board[i])
-        {
-            free(board[i]);
-            i++;
-        }
-    }
+	i = 0;
+	if (board)
+	{
+		while (board[i])
+		{
+			free(board[i]);
+			i++;
+		}
+	}
+    free(board);
 }
 
-void    free_tet(t_tet *tet) // frees t_tet, which has char**
+void	free_tet(t_tet *tet) // frees t_tet, which has char**
 {
-    if (tet)
-    {
-        if (tet->tetrimino)
-            free_board(tet->tetrimino);
-        free(tet);
-    }
+	if (tet)
+	{
+		if (tet->tetrimino)
+			free_board(tet->tetrimino);
+		free(tet);
+	}
 }
 
-void    free_tet_list(t_list *list) // frees list with t_tets
+void	free_tet_list(t_list *list) // frees list with t_tets
 {
-    t_list  *hold;
-    t_tet   *tet;
+	t_list	*hold;
+	t_tet	*tet;
 	char	**tet_arr;
 
-    while (list)
-    {
-        hold = list->next;
-        if (list->content)
-        {
-            tet = list->content;
-            tet_arr = tet->tetrimino;
-            free_tet(list->content);
-        }
-        free(list);
-        list = hold;
-    }
+	while (list)
+	{
+		hold = list->next;
+		if (list->content)
+		{
+			tet = list->content;
+			tet_arr = tet->tetrimino;
+			free_tet(list->content);
+		}
+		free(list);
+		list = hold;
+	}
 }

@@ -60,7 +60,6 @@ void	board_solver(t_list **tetriminos)
 		board_size++;
 		if (solved)
 			ft_printarray(board);
-		printf("FREEING\n");
 		free_board(board);
 	}
 }
