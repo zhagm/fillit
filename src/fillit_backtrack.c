@@ -41,17 +41,17 @@ int		check_tet_placement(char **board, t_tet *curr, int pos_y, int pos_x)
 	return (hash_count == 4 ? 1 : 0);
 }
 
-char	**place_tet(char **board, char **tet, int pos_y, int pos_x, int index)
+
+int		place_tet(char **board, char **tet, int pos_y, int pos_x, int index)
 {
 	int		y;
 	int		x;
-	char	**modified_board;
 	int		board_size;
 
 	y = 0;
 	x = 0;
+	// printf("pos_y: %d, pos[0]: %d. pos_x: %d, pos[1]: %d\n", pos_x, pos[0], pos_y, pos[1]);
 	board_size = ft_strlen(board[0]);
-	modified_board = ft_dupstrarr(board);
 	while (tet[y])
 	{
 		x = 0;
@@ -59,29 +59,36 @@ char	**place_tet(char **board, char **tet, int pos_y, int pos_x, int index)
 		{
 			if (tet[y][x] == '#' && (pos_x + x < board_size))
 			{
-				modified_board[pos_y + y][pos_x + x] = ('A' + index);
+				if (index == -1)
+					board[pos_y + y][pos_x + x] = '.';
+				else
+					board[pos_y + y][pos_x + x] = ('A' + index);
 			}
 			x++;
 		}
 		y++;
 	}
-	return (modified_board);
+	return (1);
 }
 
-int		recursive(t_list *curr, char **board, char ***result)
+int		*send_pos(int first, int second)
+{
+	int	*pos;
+
+	pos = (int *)malloc(2 * sizeof(int));
+	pos[0] = first;
+	pos[1] = second;
+	return (pos);
+}
+
+int		recursive(t_list *curr, char **board, int board_size)
 {
 	t_tet	*tet;
 	int		y;
 	int		x;
-	int		board_size;
 
 	if (curr == NULL)
-	{
-		*result = ft_dupstrarr(board);
-		free(board);
 		return (1);
-	}
-	board_size = ft_strlen(board[0]);
 	tet = curr->content;
 	y = -1;
 	while (++y < board_size && (x = -1))
@@ -89,10 +96,18 @@ int		recursive(t_list *curr, char **board, char ***result)
 		while (++x < board_size)
 		{
 			if ((check_tet_placement(board, tet, y, x)) == 1)
-				if (recursive(curr->next, place_tet(board, tet->tetrimino,
-				y, x, curr->content_size), result) == 1)
+			{
+				place_tet(board, tet->tetrimino, y, x, curr->content_size);
+				if (recursive(curr->next, board, board_size) == 1)
 					return (1);
+				else
+				{
+					place_tet(board, tet->tetrimino, y, x, -1);
+					// ft_printarray(board);
+				}
+			}
 		}
 	}
+	// free_board(board);
 	return (0);
 }

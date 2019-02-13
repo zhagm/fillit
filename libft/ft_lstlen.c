@@ -24,5 +24,6 @@ int		ft_lstlen(t_list **list)
 		curr = curr->next;
 		i++;
 	}
+	free(curr);
 	return (i);
 }

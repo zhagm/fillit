@@ -12,22 +12,22 @@
 
 #include <libft.h>
 
-char	**ft_dupstrarr(char **arr)
+char	**ft_dupstrarr(char **src)
 {
-	char	**res;
+	char **dest;
 	int		l;
 	int		i;
 
 	l = 0;
 	i = 0;
-	while (arr[l])
+	while (src[l])
 		l++;
-	res = (char **)malloc((l + 1) * sizeof(char *));
+	dest = (char **)malloc((l + 1) * sizeof(char *));
 	while (i < l)
 	{
-		res[i] = ft_strdup(arr[i]);
+		dest[i] = ft_strdup(src[i]);
 		i++;
 	}
-	res[i] = NULL;
-	return (res);
+	dest[i] = NULL;
+	return (dest);
 }

@@ -76,7 +76,8 @@ char	**trim_tet_array(char **arr)
 
 	r_lims = get_row_limits(arr);
 	c_lims = get_col_limits(arr);
-	res = malloc((((r_lims[1] - r_lims[0]) + 1) + 1) * sizeof(char *));
+	if ((res = malloc((((r_lims[1] - r_lims[0]) + 1) + 1) * sizeof(char *))) == NULL)
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (i < 4)
@@ -86,6 +87,8 @@ char	**trim_tet_array(char **arr)
 			ft_strndup(arr[i] + c_lims[0], ((c_lims[1] - c_lims[0]) + 1));
 		i++;
 	}
+	free(r_lims);
+	free(c_lims);
 	res[j] = NULL;
 	return (res);
 }

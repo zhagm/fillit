@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "./libft/includes/libft.h"
+# include "../libft/includes/libft.h"
 
 typedef	struct	s_tet
 {
@@ -36,9 +36,12 @@ int		*get_col_limits(char **tet_array);
 t_tet	*make_new_tet(char **tet_array);
 char	**make_board(int size);
 int		get_min_board_size(int count);
-char	**board_solver(t_list **tetriminos);
+void	board_solver(t_list **tetriminos);
 int		check_tet_placement(char **board, t_tet *curr, int pos_y, int pos_x);
-char	**place_tet(char **board, char **tet, int pos_y, int pos_x, int index);
-int		recursive(t_list *curr, char **board, char ***result);
+int		place_tet(char **board, char **tet, int pos_y, int pos_x, int index);
+int		recursive(t_list *curr, char **board, int board_size);
+void    free_board(char **board);
+void    free_tet(t_tet *tet);
+void    free_tet_list(t_list *list);
 
 #endif

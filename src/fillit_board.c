@@ -30,7 +30,8 @@ char	**make_board(int size)
 	int		i;
 	char	*hold;
 
-	board = (char **)malloc((size + 1) * sizeof(char *));
+	if ((board = (char **)malloc((size + 1) * sizeof(char *))) == NULL)
+		return (NULL);
 	i = 0;
 	while (i < size)
 	{
@@ -44,19 +45,30 @@ char	**make_board(int size)
 	return (board);
 }
 
-char	**board_solver(t_list **tetriminos)
+void	board_solver(t_list **tetriminos)
 {
 	int		board_size;
 	int		solved;
 	char	**board;
-	char	**solved_board;
 
 	board_size = get_min_board_size(ft_lstlen(tetriminos));
 	solved = 0;
 	while (!solved)
 	{
-		board = make_board(board_size++);
-		solved = recursive(*tetriminos, board, &solved_board);
+		board = make_board(board_size);
+		solved = recursive(*tetriminos, board, board_size);
+		board_size++;
+		if (solved)
+			ft_printarray(board);
+		printf("FREEING\n");
+		free_board(board);
 	}
-	return (solved_board);
 }
+
+
+/*
+	for THURSDAY:
+		- board is printed in solve board, everthing working
+		- mem leaks need checking and fixing
+		- find out why free_board above causes error!
+*/

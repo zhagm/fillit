@@ -18,10 +18,10 @@ t_list	*ft_lstnew_tet(t_tet *content)
 
 	if ((new = (t_list *)malloc(sizeof(t_list))) == NULL)
 		return (NULL);
-	if ((new->content = (t_tet *)malloc(sizeof(t_tet))) == NULL)
-		return (NULL);
 	if (content)
 	{
+		if ((new->content = (t_tet *)malloc(sizeof(t_tet))) == NULL)
+			return (NULL);
 		new->content = content;
 		new->content_size = 0;
 	}
@@ -33,6 +33,34 @@ t_list	*ft_lstnew_tet(t_tet *content)
 	new->next = NULL;
 	return (new);
 }
+
+
+char	**return_arr_i_want(void)
+{
+	char **res;
+	int i = 0;
+	char *hold;
+
+	res = (char **)malloc(sizeof(char *) * 5);
+	while (i < 4)
+	{
+		hold = (char *)malloc(2 * sizeof(char));
+		hold[0] = '#';
+		hold[1] = '\0';
+		res[i] = hold;
+		i++;
+	}
+	res[4] = NULL;
+	return (res);
+	// #
+	// #
+	// #
+	// #
+	// not strsplit
+	// not trim tet arr
+
+}
+
 
 t_tet	*make_new_tet(char **tet_array)
 {
@@ -46,6 +74,7 @@ t_tet	*make_new_tet(char **tet_array)
 	if (tet_array)
 	{
 		tet = trim_tet_array(tet_array);
+		// tet = return_arr_i_want();
 		new->tetrimino = tet;
 		y = 0;
 		x = 0;

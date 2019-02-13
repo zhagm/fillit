@@ -90,6 +90,6 @@ int				ft_wordcount(char const *s, char delim);
 void			ft_lstaddtoend(t_list **alst, t_list *new);
 void			ft_printarray(char **array);
 int				ft_lstlen(t_list **list);
-char			**ft_dupstrarr(char **arr);
+char			**ft_dupstrarr(char **src);
 
 #endif

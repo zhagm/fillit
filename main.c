@@ -17,7 +17,9 @@ int		main(int argc, char **argv)
 {
 	int		fd;
 	t_list	*input_list;
-	char	**board;
+	t_list	*curr;
+	t_tet 	*tet;
+	char	**tet_arr;
 
 	if (argc == 2)
 	{
@@ -27,13 +29,14 @@ int		main(int argc, char **argv)
 			ft_putstr("error\n");
 			return (0);
 		}
-		board = board_solver(&input_list);
-		ft_printarray(board);
+		// board_solver(&input_list);
+		free_tet_list(input_list);
 	}
 	else
 	{
 		ft_putstr("usage: fillit input_file\n");
 	}
+	sleep(5);
 	return (0);
 }
 

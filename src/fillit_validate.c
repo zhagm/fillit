@@ -86,8 +86,11 @@ int		check_valid_tetrimino(char *tet, t_list **tet_list)
 	t_list	*new_item;
 
 	if (check_tet_format(tet) == 0)
+	{
 		return (0);
+	}
 	tet_array = ft_strsplit(tet, '\n');
+	// tet_array = return_arr_i_want();
 	count = get_sides_count(tet_array);
 	if (count == 6 || count == 8)
 	{
@@ -99,10 +102,10 @@ int		check_valid_tetrimino(char *tet, t_list **tet_list)
 		else
 			ft_lstaddtoend(tet_list, new_item);
 		new_tet = (*tet_list)->content;
-		free(tet_array);
+		free_board(tet_array);
 		return (1);
 	}
-	free(tet_array);
+	free_board(tet_array);
 	return (0);
 }
 
@@ -131,5 +134,7 @@ int		check_valid_file(int fd, t_list **input_list)
 		if (ret != 0)
 			last_ret = ret;
 	}
-	return (last_ret != 20 ? 0 : 1);
+	if (last_ret == 20)
+		return (1);
+	return (0);
 }
