@@ -126,10 +126,11 @@ int		check_valid_file(int fd, t_list **input_list)
 		}
 		if (ret == 21 || (ret == 20))
 			is_valid = check_valid_tetrimino(buff, input_list);
+		count += is_valid;
 		if (!is_valid || (ret != 21 && ret != 20))
 			return (0);
 		if (ret != 0)
 			last_ret = ret;
 	}
-	return (last_ret == 20 ? 1 : 0);
+	return ((last_ret == 20 && count <= 26) ? 1 : 0);
 }

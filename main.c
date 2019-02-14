@@ -36,12 +36,3 @@ int		main(int argc, char **argv)
 	}
 	return (0);
 }
-
-/*
-** Todo before submission:
-** delete external files
-** check pdf for submission requirements
-** have executable in root
-** potential error in check_valid_file: if one tetrimino ret is
-** 20 and next is 21, edge case where we'd be f-ed
-*/
