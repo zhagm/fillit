@@ -76,7 +76,8 @@ char	**trim_tet_array(char **arr)
 
 	r_lims = get_row_limits(arr);
 	c_lims = get_col_limits(arr);
-	if ((res = malloc((((r_lims[1] - r_lims[0]) + 1) + 1) * sizeof(char *))) == NULL)
+	if ((res =
+	malloc((((r_lims[1] - r_lims[0]) + 1) + 1) * sizeof(char *))) == NULL)
 		return (NULL);
 	i = 0;
 	j = 0;

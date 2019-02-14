@@ -12,7 +12,7 @@
 
 #include "fillit.h"
 
-void	free_board(char **board) // frees char**
+void	free_board(char **board)
 {
 	int i;
 
@@ -25,10 +25,10 @@ void	free_board(char **board) // frees char**
 			i++;
 		}
 	}
-    free(board);
+	free(board);
 }
 
-void	free_tet(t_tet *tet) // frees t_tet, which has char**
+void	free_tet(t_tet *tet)
 {
 	if (tet)
 	{
@@ -38,7 +38,7 @@ void	free_tet(t_tet *tet) // frees t_tet, which has char**
 	}
 }
 
-void	free_tet_list(t_list *list) // frees list with t_tets
+void	free_tet_list(t_list *list)
 {
 	t_list	*hold;
 	t_tet	*tet;

@@ -35,17 +35,17 @@ int		main(int argc, char **argv)
 		ft_putstr("usage: fillit input_file\n");
 	}
 	close(fd);
-	sleep(5);
 	return (0);
 }
 
 /*
- * Todo before submission:
- * check for memory leaks (leaks on CL)
- * norm
- * Makefile
- * delete external files
- * check pdf for submission requirements
- * have executable in root
-// potential error in check_valid_file: if one tetrimino ret is 20 and next is 21, edge case where we'd be f-ed
+** Todo before submission:
+** check for memory leaks (leaks on CL)
+** norm
+** Makefile
+** delete external files
+** check pdf for submission requirements
+** have executable in root
+** potential error in check_valid_file: if one tetrimino ret is
+** 20 and next is 21, edge case where we'd be f-ed
 */

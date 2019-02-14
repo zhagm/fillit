@@ -14,7 +14,7 @@
 
 char	**ft_dupstrarr(char **src)
 {
-	char **dest;
+	char	**dest;
 	int		l;
 	int		i;
 

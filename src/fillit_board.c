@@ -63,11 +63,3 @@ void	board_solver(t_list **tetriminos)
 		free_board(board);
 	}
 }
-
-
-/*
-	for THURSDAY:
-		- board is printed in solve board, everthing working
-		- mem leaks need checking and fixing
-		- find out why free_board above causes error!
-*/
