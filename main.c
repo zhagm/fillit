@@ -17,7 +17,6 @@ int		main(int argc, char **argv)
 {
 	int		fd;
 	t_list	*input_list;
-	char	**tet_arr;
 
 	if (argc == 2)
 	{
@@ -29,19 +28,18 @@ int		main(int argc, char **argv)
 		}
 		board_solver(&input_list);
 		free_tet_list(input_list);
+		close(fd);
 	}
 	else
 	{
 		ft_putstr("usage: fillit input_file\n");
 	}
-	close(fd);
 	return (0);
 }
 
 /*
 ** Todo before submission:
 ** check for memory leaks (leaks on CL)
-** norm
 ** Makefile
 ** delete external files
 ** check pdf for submission requirements
