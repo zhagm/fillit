@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "../libft/includes/libft.h"
+# include "libft/includes/libft.h"
 
 typedef	struct	s_tet
 {

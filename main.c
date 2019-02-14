@@ -39,8 +39,6 @@ int		main(int argc, char **argv)
 
 /*
 ** Todo before submission:
-** check for memory leaks (leaks on CL)
-** Makefile
 ** delete external files
 ** check pdf for submission requirements
 ** have executable in root

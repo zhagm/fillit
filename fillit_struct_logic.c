@@ -20,8 +20,6 @@ t_list	*ft_lstnew_tet(t_tet *content)
 		return (NULL);
 	if (content)
 	{
-		if ((new->content = (t_tet *)malloc(sizeof(t_tet))) == NULL)
-			return (NULL);
 		new->content = content;
 		new->content_size = 0;
 	}
